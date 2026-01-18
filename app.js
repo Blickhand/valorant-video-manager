@@ -1577,6 +1577,16 @@ async function initDashboard() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // 窗口控制按钮事件监听器
+    const minBtn = document.getElementById('min-btn');
+    const maxBtn = document.getElementById('max-btn');
+    const closeBtn = document.getElementById('close-btn');
+
+    if (minBtn) minBtn.addEventListener('click', () => window.windowAPI.minimize());
+    if (maxBtn) maxBtn.addEventListener('click', () => window.windowAPI.maximize());
+    if (closeBtn) closeBtn.addEventListener('click', () => window.windowAPI.close());
+
+    // 根据页面初始化对应功能
     if (window.location.pathname.includes('code2.html')) {
         initEditor();
     } else {

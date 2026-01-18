@@ -31,8 +31,9 @@ function createWindow() {
         height: 900,
         minWidth: 1200,
         minHeight: 700,
-        frame: false, // 无边框窗口，使用自定义标题栏
-        backgroundColor: '#230f11',
+        frame: false,           // 无边框窗口
+        titleBarStyle: 'hidden', // 隐藏标题栏但允许窗口控制
+        backgroundColor: '#1f2731',
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
             nodeIntegration: false,
@@ -63,6 +64,29 @@ app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
         app.quit();
     }
+});
+
+// ==================== 窗口控制 IPC ====================
+
+ipcMain.on('window-minimize', (event) => {
+    const win = BrowserWindow.fromWebContents(event.sender);
+    if (win) win.minimize();
+});
+
+ipcMain.on('window-maximize-toggle', (event) => {
+    const win = BrowserWindow.fromWebContents(event.sender);
+    if (win) {
+        if (win.isMaximized()) {
+            win.unmaximize();
+        } else {
+            win.maximize();
+        }
+    }
+});
+
+ipcMain.on('window-close', (event) => {
+    const win = BrowserWindow.fromWebContents(event.sender);
+    if (win) win.close();
 });
 
 // ==================== IPC 处理器 ====================

@@ -62,6 +62,6 @@ contextBridge.exposeInMainWorld('configAPI', {
 // 暴露窗口控制 API
 contextBridge.exposeInMainWorld('windowAPI', {
     minimize: () => ipcRenderer.send('window-minimize'),
-    maximize: () => ipcRenderer.send('window-maximize'),
+    maximize: () => ipcRenderer.send('window-maximize-toggle'),
     close: () => ipcRenderer.send('window-close')
 });

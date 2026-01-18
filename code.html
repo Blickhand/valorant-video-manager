@@ -83,8 +83,35 @@
 </head>
 
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-hidden">
+    <!-- 自定义标题栏 -->
+    <div id="title-bar" style="
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 32px;
+        background-color: #1f2731;
+        -webkit-app-region: drag;
+        padding-left: 10px;
+        color: white;
+        font-size: 12px;
+        user-select: none;
+    ">
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <span class="material-symbols-outlined" style="font-size: 16px;">videocam</span>
+            <span>Valorant Highlights</span>
+        </div>
+        <div style="-webkit-app-region: no-drag; display: flex; height: 100%;">
+            <button id="min-btn"
+                style="width: 45px; background: transparent; border: none; color: white; cursor: pointer;">─</button>
+            <button id="max-btn"
+                style="width: 45px; background: transparent; border: none; color: white; cursor: pointer;">□</button>
+            <button id="close-btn"
+                style="width: 45px; background: transparent; border: none; color: white; cursor: pointer;">✕</button>
+        </div>
+    </div>
+
     <!-- Toast 通知容器 -->
-    <div id="toast-container" class="fixed top-4 right-4 z-50 flex flex-col gap-2"></div>
+    <div id="toast-container" class="fixed top-10 right-4 z-50 flex flex-col gap-2"></div>
 
     <!-- 设置模态框 -->
     <div id="settings-modal"
@@ -129,7 +156,7 @@
         </div>
     </div>
 
-    <div class="flex h-screen w-full">
+    <div class="flex w-full overflow-hidden" style="height: calc(100vh - 32px);">
         <aside class="flex flex-col w-64 h-full bg-surface-dark border-r border-surface-hover flex-shrink-0">
             <div class="flex flex-col h-full p-4 justify-between">
                 <div class="flex flex-col gap-6">
